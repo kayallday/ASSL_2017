@@ -1,30 +1,24 @@
-# -*- coding: utf-8 -*-
-
-"""
-Kelsey M. Beard
-"""
-
 import time
 from sqlite3 import dbapi2 as sqlite3
 from hashlib import md5
 from datetime import datetime
 from flask import Flask, request, session, url_for, redirect, \
-    render_template, abort, g, flash, _app_ctx_stack
+     render_template, abort, g, flash, _app_ctx_stack
+#Hashes password
 from werkzeug import check_password_hash, generate_password_hash
 
-
-# *** config ***
-DATABASE = '/tmp/remember.db'
+# configuration
+DATABASE = '/tmp/reminder.db'
 PER_PAGE = 30
 DEBUG = True
 SECRET_KEY = 'development key'
 
-
+#creates app
 app = Flask(__name__)
 app.config.from_object(__name__)
-app.config.from_envvar('REMEMBER_SETTINGS', silent=True)
+app.config.from_envvar('REMINDER_SETTINGS', silent=True)
 
-
+#Database
 def get_db():
 
     top = _app_ctx_stack.top
@@ -33,11 +27,13 @@ def get_db():
         top.sqlite_db.row_factory = sqlite3.Row
     return top.sqlite_db
 
+
 @app.teardown_appcontext
 def close_database(exception):
     top = _app_ctx_stack.top
     if hasattr(top, 'sqlite_db'):
         top.sqlite_db.close()
+
 
 def init_db():
     with app.app_context():
@@ -46,36 +42,42 @@ def init_db():
             db.cursor().executescript(f.read())
         db.commit()
 
+
 def query_db(query, args=(), one=False):
     cur = get_db().execute(query, args)
     rv = cur.fetchall()
     return (rv[0] if rv else None) if one else rv
+
 
 def get_user_id(username):
     rv = query_db('select user_id from user where username = ?',
                   [username], one=True)
     return rv[0] if rv else None
 
+#Date & Time
 def format_datetime(timestamp):
     return datetime.utcfromtimestamp(timestamp).strftime('%Y-%m-%d @ %H:%M')
 
-def gravatar_url(email, size=80):
-    return 'http://gravatar.com/avatar/%s?d=identicon&s=%d' % \
-           (md5(email.strip().lower().encode('utf-8')).hexdigest(), size)
+#Gets Gravatar Image associated with email, through gravatar.com
+def gravatar_url(email, size=90):
+    return 'http://www.gravatar.com/avatar/%s?d=identicon&s=%d' % \
+        (md5(email.strip().lower().encode('utf-8')).hexdigest(), size)
+
 
 @app.before_request
 def before_request():
     g.user = None
     if 'user_id' in session:
-        g.user = query_db('select * from user where user_id =?',
+        g.user = query_db('select * from user where user_id = ?',
                           [session['user_id']], one=True)
+
 
 @app.route('/')
 def timeline():
     if not g.user:
         return redirect(url_for('public_timeline'))
     return render_template('timeline.html', messages=query_db('''
-        select message.*, user.* from message, USER
+        select message.*, user.* from message, user
         where message.author_id = user.user_id and (
             user.user_id = ? or
             user.user_id in (select whom_id from follower
@@ -112,6 +114,7 @@ def user_timeline(username):
             profile_user=profile_user)
 
 
+# option to follow someone elses Reminder
 @app.route('/<username>/follow')
 def follow_user(username):
     if not g.user:
@@ -127,14 +130,16 @@ def follow_user(username):
     return redirect(url_for('user_timeline', username=username))
 
 
+# Adding a new Post to Reminder
 @app.route('/add_message', methods=['POST'])
 def add_message():
     if 'user_id' not in session:
         abort(401)
-    if request.form['text']:
+
+    if request.form['text'] or request.form['cat']:
         db = get_db()
-        db.execute('''insert into message (author_id, text, pub_date)
-          values (?, ?, ?)''', (session['user_id'], request.form['text'],
+        db.execute('''insert into message (author_id, text, cat, pub_date)
+          values (?, ?, ?, ?)''', (session['user_id'], request.form['text'], request.form['cat'],
                                 int(time.time())))
         db.commit()
         flash('Your message was recorded')
@@ -142,6 +147,7 @@ def add_message():
 
 
 
+# Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if g.user:
@@ -161,7 +167,7 @@ def login():
             return redirect(url_for('timeline'))
     return render_template('login.html', error=error)
 
-
+#Register
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if g.user:
@@ -178,7 +184,7 @@ def register():
         elif request.form['password'] != request.form['password2']:
             error = 'The passwords do not match'
         elif get_user_id(request.form['username']) is not None:
-            error = 'This username is already taken'
+            error = 'Sorry, this username is already taken'
         else:
             db = get_db()
             db.execute('''insert into user (
@@ -191,11 +197,13 @@ def register():
     return render_template('register.html', error=error)
 
 
+#Logout
 @app.route('/logout')
 def logout():
     flash('See you next time!')
     session.pop('user_id', None)
     return redirect(url_for('public_timeline'))
+
 
 app.jinja_env.filters['datetimeformat'] = format_datetime
 app.jinja_env.filters['gravatar'] = gravatar_url

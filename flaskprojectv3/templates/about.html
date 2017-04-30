@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}Sign Up{% endblock %}
+{% block body %}
+  <h2>About Remindify</h2>
+  {% if error %}<div class=error><strong>Error:</strong> {{ error }}</div>{% endif %}
+ Remindify is great for those urgent times you can't seem to find a pen, and don't want to be a victim of your own short term memory. Create a free account today and keep track of those wayfaring thoughts, and ideas.
+    <ul>
+        <li>Features</li>
+        <ul>
+            <li>login - 3rd party with gravatar</li>
+            <li>reminder storage</li>
+            <li>timestamps for accurate logging</li>
+            <li>CRUD operations for reminders</li>
+            <li>search for reminders</li>
+            <li></li>
+        </ul>
+    </ul>
+
+{% endblock %}

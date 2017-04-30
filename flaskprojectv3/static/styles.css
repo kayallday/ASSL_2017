@@ -1,6 +1,5 @@
 
 body {
-    background-image: url("background.jpg");
     background-color: #cccccc;
     font-family: 'Calibri', sans-serif;
     font-size: 14px;
@@ -50,7 +49,7 @@ div.page h1 {
 }
 
 div.page div.navigation {
-    background: #DEE9E8;
+    background: #cccccc;
     padding: 4px 10px;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid black;
@@ -287,7 +286,7 @@ label {
 p.result {
 	text-align: center;
 	padding-top: 50px;
-	border: 3px #D0C972 solid;
+	border: 3px #1acbd0 solid;
 	border-radius: 5px;
 	margin-top: 0;
 }

@@ -7,7 +7,7 @@
   {% else %}
     My Reminders
   {% endif %}
-{% endblock %}
+{% endblock %}h
 {% block body %}
   <h2>{{ self.title() }}</h2>
   {% if g.user %}
@@ -17,14 +17,13 @@
         <h3>ENTER A REMINDER, {{ g.user.username }}:</h3>
 
         <form action="{{ url_for('add_message') }}" method=post>
-          <label>Reminder Note:</label><input type=text name=text size=80>
-            <label>Category:</label><select>
-              <option value="song">Song</option>
-              <option value="hw">Homework</option>
-              <option value="list">Grocery / Supplies</option>
-              <option value="task">Task / To Do</option>
-              <option value="pw">Passwords</option>
-              <option value="links">Website Links</option>
+          <label>Reminder Note:</label> <input type=text name=text size=80><BR>
+            <label>Category:</label>
+              <select name="cat">
+                <option value="To Do List">To Do List</option>
+                <option value="Song Lyrics">Lyrics</option>
+                <option value="Homework">Homework</option>
+                <option value="Things to Buy">Things to Buy</option>
               </select>
           <!--
           --><input type=submit value="Share">
@@ -34,10 +33,14 @@
   {% endif %}
   <ul class=messages>
   {% for message in messages %}
-    <li><img src="{{ message.email|gravatar(size=48) }}"><p>
+    <li><img src="{{ message.email|gravatar(size=75) }}"><p>
       <strong><a href="{{ url_for('user_timeline', username=message.username)
       }}">{{ message.username }}</a></strong>
-      {{ message.text }}
+
+      <b>Note: </b>{{ message.text }}
+      <BR><br>
+      <b>Category: </b>{{message.cat}}<BR>
+
       <small>&mdash; {{ message.pub_date|datetimeformat }}</small>
   {% else %}
     <li><em>No messages so far.</em>

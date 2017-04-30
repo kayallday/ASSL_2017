@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block title %}
+  {% if request.endpoint == 'public_timeline' %}
+
+  {% elif request.endpoint == 'user_timeline' %}
+    {{ profile_user.username }}'s Reminders
+  {% else %}
+    My Reminders
+  {% endif %}
+{% endblock %}
+{% block body %}
+  <h2>{{ self.title() }}</h2>
+  {% if g.user %}
+    {% if request.endpoint == 'user_timeline' %}
+    {% elif request.endpoint == 'timeline' %}
+      <div class=reminder>
+        <h3>ENTER A REMINDER, {{ g.user.username }}:</h3>
+
+        <form action="{{ url_for('add_message', id=10) }}" method=post>
+            <input type="hidden" name="_method" value="DELETE" />
+          <label>Reminder Note:</label> <input type=text name=text size=80><BR>
+            <label>Category:</label>
+              <select name="cat">
+                <option value="To Do List">To Do List</option>
+                <option value="Song Lyrics">Lyrics</option>
+                <option value="Homework">Homework</option>
+                <option value="Things to Buy">Things to Buy</option>
+                <option value="Groceries">Grocery List</option>
+                <option value="Restaurants to Try">Restaurants to Try</option>
+                <option value="Bars to try">Bars to try</option>
+                <option value="Favorite Quotes">Favorite Quotes</option>
+                <option value="Movies to watch">Movies to watch</option>
+              </select>
+          <!--
+          --><input type=submit value="Share">
+        </form>
+      </div>
+    {% endif %}
+  {% endif %}
+
+  <ul class=messages>
+  {% for message in messages %}
+
+    <li><img src="{{ message.email|gravatar(size=75) }}"><p>
+      <form action="{{ url_for('delete_message', message=message.message_id) }}">
+        <input type="hidden" name="message_id" value="{{ message }}">
+        <input type="submit" name="_method" value="Delete" />
+
+      </form>
+      <strong><a href="{{ url_for('user_timeline', username=message.username)
+      }}">{{ message.username }}</a></strong>
+
+      <b>Note: </b>{{ message.text }}
+      <BR><br>
+      <b>Category: </b>{{message.cat}}<BR>
+
+      <small>&mdash; {{ message.pub_date|datetimeformat }}</small>
+  {% else %}
+    <li><em>No messages so far.</em>
+  {% endfor %}
+  </ul>
+{% endblock %}

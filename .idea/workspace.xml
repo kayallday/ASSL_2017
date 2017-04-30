@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52bd1389-b28e-4b84-ad19-5e6246684b69" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flaskprojectv3/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flaskprojectv3/remember.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flaskproject/schema.sql" afterPath="$PROJECT_DIR$/flaskproject/schema.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flaskproject/templates/timeline.html" afterPath="$PROJECT_DIR$/flaskproject/templates/timeline.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flaskprojectv2/remember.py" afterPath="$PROJECT_DIR$/flaskprojectv2/remember.py" />
     </list>
     <ignored path="ASSL_2017.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,44 +47,6 @@
         </state>
       </content>
     </window>
-    <window id="4">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="remember.py" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/flaskprojectv3/remember.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="327">
-                    <caret line="158" column="36" selection-start-line="158" selection-start-column="36" selection-end-line="158" selection-end-column="36" />
-                    <folding>
-                      <element signature="e#0#11#0" expanded="true" />
-                      <marker date="1493583964000" expanded="true" signature="1317:1360" ph="select user_... user" />
-                      <marker date="1493583964000" expanded="true" signature="1916:1952" ph="select * fro... user" />
-                      <marker date="1493583964000" expanded="true" signature="2192:2480" ph="select messa... message" />
-                      <marker date="1493583964000" expanded="true" signature="2350:2431" ph="select whom_... follower" />
-                      <marker date="1493583964000" expanded="true" signature="2667:2804" ph="select messa... message" />
-                      <marker date="1493583964000" expanded="true" signature="2908:2945" ph="select * fro... user" />
-                      <marker date="1493583964000" expanded="true" signature="3113:3198" ph="select 1 fro... follower" />
-                      <marker date="1493583964000" expanded="true" signature="3374:3540" ph="select messa... message" />
-                      <marker date="1493583964000" expanded="true" signature="3908:3960" ph="insert into follower... " />
-                      <marker date="1493583964000" expanded="true" signature="4387:4469" ph="insert into message... " />
-                      <marker date="1493583964000" expanded="true" signature="4960:4973" ph="delete from " />
-                      <marker date="1493583964000" expanded="true" signature="4960:4980" ph="delete from " />
-                      <marker date="1493583964000" expanded="true" signature="4960:5054" ph="delete from " />
-                      <marker date="1493583964000" expanded="true" signature="4960:5066" ph="delete from " />
-                      <marker date="1493583964000" expanded="true" signature="4960:5152" ph="delete from " />
-                      <marker date="1493583964000" expanded="true" signature="4960:5539" ph="delete from " />
-                      <marker date="1493583964000" expanded="true" signature="5542:5591" ph="select * fro... user" />
-                      <marker date="1493583964000" expanded="true" signature="6897:6972" ph="insert into user... " />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -97,11 +54,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="timeline.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="timeline.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flaskprojectv3/templates/timeline.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="389">
               <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="APPINFO.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/APPINFO.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -194,6 +161,8 @@
         <option value="$PROJECT_DIR$/flaskprojectv3/templates/delete.html" />
         <option value="$PROJECT_DIR$/flaskprojectv3/templates/timeline.html" />
         <option value="$PROJECT_DIR$/flaskprojectv3/remember.py" />
+        <option value="$PROJECT_DIR$/APPINFO.txt" />
+        <option value="$PROJECT_DIR$/APPINFO.md" />
       </list>
     </option>
   </component>
@@ -592,14 +561,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/flaskprojectv2/venv/.Python">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/flaskprojectv2/venv/pip-selfcheck.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1022,8 +983,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/flaskprojectv3/remember.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="158" column="36" selection-start-line="158" selection-start-column="36" selection-end-line="158" selection-end-column="36" />
+        <state relative-caret-position="567">
+          <caret line="174" column="36" selection-start-line="174" selection-start-column="36" selection-end-line="174" selection-end-column="36" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
             <marker date="1493583964000" expanded="true" signature="1317:1360" ph="select user_... user" />
@@ -1052,6 +1013,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="389">
           <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/APPINFO.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>

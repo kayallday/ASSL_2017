@@ -146,18 +146,33 @@ def add_message():
     return redirect(url_for('timeline'))
 
 # Deleting a message Post from Reminder
-@app.route('/delete_message', methods=['POST'])
-def delete_message():
-    if 'user_id' not in session:
-        abort(401)
-
-    #if request.form['text'] or request.form['cat']:
-        db = get_db()
-        db.execute('''delete from message WHERE author_id = ?''', (session['user_id'], request.form['text'], request.form['message_id'],
-                                                                   int(time.time())))
-        db.commit()
-        flash('Message was deleted')
-    return redirect(url_for('timeline'))
+# @app.route('/delete_message', methods=['DELETE'])
+# def delete_message():
+#     if 'user_id' not in session:
+#         abort(401)
+#
+#         db = get_db()
+#         db.execute('''delete from message (author_id, text, cat, pub_date)
+#           values (?, ?, ?, ?) WHERE message_id == this.message_id''', (session['user_id'],
+#                                    int(time.time())))
+#         db.commit()
+#         flash('Your message was deleted')
+#     return redirect(url_for('timeline'))
+#
+#
+# # Update post
+# @app.route('/edit_message', methods=['PUT'])
+# def edit_message():
+#     if 'user_id' not in session:
+#         abort(401)
+#
+#     if request.form['text'] or request.form['cat']:
+#         db = get_db()
+#         db.execute('''update message set(text = value (?), cat = value (?), pub_date = value (?)) WHERE message_id == this.message_id''', (session['user_id'], request.form['text'], request.form['cat'],
+#                                 int(time.time())))
+#         db.commit()
+#         flash('Your message was recorded')
+#     return redirect(url_for('timeline'))
 
 
 #About

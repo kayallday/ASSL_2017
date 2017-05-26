@@ -42,11 +42,16 @@
   {% for message in messages %}
 
     <li><img src="{{ message.email|gravatar(size=75) }}"><p>
-      <form action="{{ url_for('delete_message', message=message.message_id) }}">
-        <input type="hidden" name="message_id" value="{{ message }}">
-        <input type="submit" name="_method" value="Delete" />
+      <!--<form action="{{ url_for('delete_message', message=message.message_id) }}">-->
+        <!--<input type="hidden" name="message_id" value="{{ message }}">-->
+        <!--<input type="submit" name="_method" value="Delete" />-->
 
-      </form>
+      <!--</form>-->
+      <!--<form action="{{ url_for('update_message', message=message.message_id) }}">-->
+        <!--<input type="hidden" name="message_id" value="{{ message }}">-->
+        <!--<input type="submit" name="_method" value="Edit" />-->
+
+      <!--</form>-->
       <strong><a href="{{ url_for('user_timeline', username=message.username)
       }}">{{ message.username }}</a></strong>
 
